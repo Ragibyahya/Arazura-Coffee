@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>☕ Arazura Coffee Shop</title>
+  <style>
+    :root {
+      --bg: #f3efea;
+      --text: #3b2f2f;
+      --card: #ffffff;
+      --primary: #4b2e2e;
+    }
+
+    body.dark-mode {
+      --bg: #1e1e1e;
+      --text: #f0f0f0;
+      --card: #2c2c2c;
+      --primary: #8b4513;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      background-color: var(--bg);
+      color: var(--text);
+      transition: 0.3s;
+    }
+
+    header {
+      background-color: var(--primary);
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+
+    nav {
+      background-color: #6b4f3f;
+      text-align: center;
+      padding: 10px 0;
+    }
+
+    nav a {
+      color: white;
+      margin: 0 15px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .hero {
+      background: url('https://images.unsplash.com/photo-1509042239860-f550ce710b93') center/cover no-repeat;
+      height: 300px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 2em;
+      text-shadow: 2px 2px 5px #000;
+    }
+
+    .section {
+      padding: 40px 20px;
+      text-align: center;
+    }
+
+    .menu-list {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 25px;
+    }
+
+    .menu-item {
+      background: var(--card);
+      border-radius: 10px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      width: 250px;
+      padding: 20px;
+      text-align: left;
+    }
+
+    form {
+      max-width: 500px;
+      margin: 0 auto;
+      background: var(--card);
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      text-align: left;
+    }
+
+    form label {
+      display: block;
+      margin-top: 10px;
+      font-weight: bold;
+    }
+
+    form input, form select, form textarea {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      background-color: var(--bg);
+      color: var(--text);
+    }
+
+    form button {
+      margin-top: 15px;
+      background-color: var(--primary);
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .dark-toggle {
+      position: fixed;
+      top: 15px;
+      right: 15px;
+      background-color: var(--primary);
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 20px;
+      cursor: pointer;
+      z-index: 100;
+    }
+
+    footer {
+      background-color: var(--primary);
+      color: white;
+      text-align: center;
+      padding: 20px;
+      margin-top: 30px;
+    }
+  </style>
+</head>
+<body>
+
+  <button class="dark-toggle" onclick="toggleDarkMode()">🌙 Dark Mode</button>
+
+  <header>
+    <h1 style="font-family: 'Playfair Display', serif; font-size: 2.8em;">
+  ☕ Arazura <span style="color: #d2a679;">Coffee</span>
+</h1>
+
+    <p>Nikmati Rasa, Temukan Cerita</p>
+  </header>
+
+  <nav>
+    <a href="#">Beranda</a>
+    <a href="#menu">Menu</a>
+    <a href="#pesan">Pesan</a>
+    <a href="#lokasi">Lokasi</a>
+  </nav>
+
+  <div class="hero">
+    Tempat Ngopi Santai di Jakarta Timur
+  </div>
+
+  <div class="section" id="menu">
+    <h2>☕ Menu dan Harga</h2>
+    <div class="menu-list">
+      <div class="menu-item"><h3>Espresso</h3><p>Kopi hitam pekat</p><strong>Rp 18.000</strong></div>
+      <div class="menu-item"><h3>Cappuccino</h3><p>Espresso + susu + busa</p><strong>Rp 22.000</strong></div>
+      <div class="menu-item"><h3>Café Latte</h3><p>Kopi susu lembut</p><strong>Rp 23.000</strong></div>
+      <div class="menu-item"><h3>Americano</h3><p>Espresso + air panas</p><strong>Rp 20.000</strong></div>
+      <div class="menu-item"><h3>Es Kopi Gula Aren</h3><p>Espresso + susu + gula aren</p><strong>Rp 24.000</strong></div>
+      <div class="menu-item"><h3>Roti Bakar</h3><p>Cokelat Keju</p><strong>Rp 15.000</strong></div>
+      <div class="menu-item"><h3>Donat Kopi</h3><p>Spesial Arazura</p><strong>Rp 12.000</strong></div>
+      <div class="menu-item"><h3>Croissant Butter</h3><p>Mentega lembut</p><strong>Rp 17.000</strong></div>
+    </div>
+  </div>
+
+  <div class="section" id="pesan">
+    <h2>📝 Form Pemesanan</h2>
+    <form onsubmit="event.preventDefault(); kirimWhatsApp();">
+      <label for="nama">Nama</label>
+      <input type="text" id="nama" name="nama" required>
+
+      <label for="menu">Pilih Menu</label>
+      <select id="menu" name="menu">
+        <option>Espresso</option>
+        <option>Cappuccino</option>
+        <option>Café Latte</option>
+        <option>Americano</option>
+        <option>Es Kopi Gula Aren</option>
+        <option>Roti Bakar Cokelat Keju</option>
+        <option>Donat Kopi Spesial</option>
+        <option>Croissant Butter</option>
+      </select>
+
+      <label for="jumlah">Jumlah</label>
+      <input type="number" id="jumlah" name="jumlah" min="1" required>
+
+      <label for="catatan">Catatan Tambahan</label>
+      <textarea id="catatan" name="catatan" rows="3"></textarea>
+
+      <button type="submit">Kirim via WhatsApp</button>
+    </form>
+  </div>
+
+  <div class="section" id="lokasi">
+    <h2>📍 Lokasi Kami</h2>
+    <p>Jl. Pisangan Baru III No. 1, RT 01 / RW 07, Jakarta Timur</p>
+    <p>Juga tersedia di <strong>Gojek</strong>, <strong>Grab</strong>, dan <strong>ShopeeFood</strong>.</p>
+  </div>
+
+  <div class="section">
+    <h2>🎉 Event Spesial</h2>
+    <p>Kami mengadakan event seru setiap 3 bulan, seperti lomba game & kompetisi menyanyi saat live music!</p>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 Arazura Coffee Shop. Semua Hak Dilindungi.</p>
+  </footer>
+
+  <script>
+    function toggleDarkMode() {
+      document.body.classList.toggle('dark-mode');
+    }
+
+    function kirimWhatsApp() {
+      const nama = document.getElementById("nama").value;
+      const menu = document.getElementById("menu").value;
+      const jumlah = document.getElementById("jumlah").value;
+      const catatan = document.getElementById("catatan").value;
+
+      // Ganti dengan nomor WhatsApp bisnis Arazura (format internasional tanpa +)
+      const nomorTujuan = "6289685831212";
+
+      const pesan = `Halo Arazura! Saya ingin memesan:\n\nNama: ${nama}\nMenu: ${menu}\nJumlah: ${jumlah}\nCatatan: ${catatan}`;
+     const url = `https://wa.link/uh9f2t?text=${encodeURIComponent(pesan)}`;
+      window.open("https://wa.link/uh9f2t");
+    }
+  </script>
+
+</body>
+</html>
